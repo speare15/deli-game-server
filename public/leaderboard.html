@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Deli Training Leaderboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #b87809;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 600px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        td {
+            background-color: #f7d88f;
+        }
+
+        th {
+            background-color: #d6b25e;
+        }
+
+        h1{
+            color: #f5ef53;
+            text-align:center;
+        }
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Deli Training Leaderboard: Level 2</h1>
+
+    <table class="center">
+
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Score</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+
+        <tbody id="leaderboard">
+        </tbody>
+
+    </table>
+
+    <script>
+
+        function loadLeaderboard() {
+
+            fetch("http://localhost:3000/resultsLevel2")
+                .then(r => r.ok ? r.json() : console.log("Error: " + r.statusText))
+                .then(results => {
+
+                    console.log(results);
+
+            //Using the OR Operator and .sort() method to calcualte first score, then time.
+                    results.sort((a,b) => a.score - b.score || a.time - b.time);
+
+                    const leaderboard =
+                        document.getElementById("leaderboard");
+
+                    results.forEach(function(result, index) {
+
+                        leaderboard.innerHTML += `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${result.name}</td>
+                                <td>${result.score}</td>
+                                <td>${result.time}</td>
+                            </tr>
+                        `;
+
+                    });
+
+                });
+        }
+
+        loadLeaderboard();
+
+    </script>
+
+</body>
+
+</html>
