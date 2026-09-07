@@ -4,7 +4,7 @@ import { readFile, writeFile } from "fs/promises";
 export const handler = async (req: IncomingMessage, res: ServerResponse) => {
 
     //Allow the frontend to communicate with the server
-    res.setHeader("Access-Control-Allow-Origins", "*");
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
