@@ -3,6 +3,18 @@ import { readFile, writeFile } from "fs/promises";
 
 export const handler = async (req: IncomingMessage, res: ServerResponse) => {
 
+    //Allow the frontend to communicate with the server
+    res.setHeader("Access-Control-Allow-Origins", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+    // Handle browser CORS preflight request
+    if (req.method === "OPTIONS") {
+        res.statusCode = 204;
+        res.end();
+        return;
+    }
+
     // Level 1 code
     if (req.method === "POST" && req.url === "/resultLevel1")
             {
@@ -96,5 +108,5 @@ export const handler = async (req: IncomingMessage, res: ServerResponse) => {
         res.end("Hello, World.");
     }
 
-//Whenever a request comes in, respond with "Hello World."
+//Whenever a request comes in, respond with "Hello World."t comes in, respond with "Hello World."
 //Whenever a request comes in, respond with "Hello World."
