@@ -3,7 +3,7 @@ import { readFile, writeFile } from "fs/promises";
 
 export const handler = async (req: IncomingMessage, res: ServerResponse) => {
 
-    // Level 1 stuffz
+    // Level 1 code
     if (req.method === "POST" && req.url === "/resultLevel1")
             {
                 let body = "";
@@ -50,7 +50,7 @@ export const handler = async (req: IncomingMessage, res: ServerResponse) => {
 
 
 
-        //level 2 shite
+        //level 2 code
             if (req.method === "POST" && req.url === "/resultLevel2")
             {
                 let body = "";
@@ -96,4 +96,5 @@ export const handler = async (req: IncomingMessage, res: ServerResponse) => {
         res.end("Hello, World.");
     }
 
+//Whenever a request comes in, respond with "Hello World."
 //Whenever a request comes in, respond with "Hello World."
