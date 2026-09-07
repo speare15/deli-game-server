@@ -1,7 +1,7 @@
 import { createServer } from "http";
 import { handler } from "./handler";
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 const server = createServer(handler);
 
